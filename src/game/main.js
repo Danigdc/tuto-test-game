@@ -1,37 +1,30 @@
-/**
- *
- * This is a simple state template to use for getting a Phaser game up
- * and running quickly. Simply add your own game logic to the default
- * state object or delete it and make your own.
- *
- */
+var SPEED = 200
+var GRAVITY = 900;
 
 var state = {
-    init: function () {
-        // Delete this init block or replace with your own logic.
-
-        // Create simple text display for current Phaser version
-        var text = "Phaser Version " + Phaser.VERSION + " works!";
-        var style = { font: "24px Arial", fill: "#fff", align: "center" };
-        var t = game.add.text(this.world.centerX, this.world.centerY, text, style);
-        t.anchor.setTo(0.5, 0.5);
-
+    preload: function(){
+        this.load.image("wall", "/assets/wall.png");
+        this.load.image("background", "/assets/background-texture.png");
+        this.load.spritesheet("player", "/assets/player.png", 48, 48);
     },
-    preload: function () {
-        // STate preload logic goes here
+    create: function(){
+        this.background = this.add.tileSprite(0, 0, this.world.with, this.world.height, 'background')
+        this.background.autoScroll(-SPEED, 0);
+        this.physics.startSystem(Phaser.Physics.ARCADE);
+        this.physics.arcade.gravity.y = GRAVITY;
+        this.player = this.add.sprite(0,0,'player');
+        this.player.animations.add('fly', [0,1,2], 10, true);
+        this.physics.arcade.enableBody(this.player);
+        this.player.body.collideWorldBounds = true;
     },
-    create: function () {
-        // State create logic goes heredwa
-    },
-    update: function () {
-        // State Update Logic goes here.
+    update: function(){
     }
-};
+}
 
 var game = new Phaser.Game(
-    800,
-    480,
+    320,
+    568,
     Phaser.AUTO,
     'game',
     state
-);
+)
