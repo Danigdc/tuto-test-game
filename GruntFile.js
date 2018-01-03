@@ -10,7 +10,7 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     port: 8080,
-                    base: './deploy'
+                    base: './docs'
                 }
             }
         },
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 src: [  "src/lib/**/*.js",
                     "src/game/**/*.js"
                      ],
-                dest: 'deploy/js/<%= pkg.name %>.js'
+                dest: 'docs/js/<%= pkg.name %>.js'
             }
         },
         watch: {
