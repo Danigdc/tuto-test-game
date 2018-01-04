@@ -5,6 +5,7 @@
 var SPEED = 200
 var GRAVITY = 900;
 var JET = 420;
+var OPENING = 200;
 
 var state = {
     preload: function(){
@@ -14,6 +15,7 @@ var state = {
     },
     create: function(){
         this.background = this.add.tileSprite(0, 0, this.world.width, this.world.height, 'background')
+        this.walls = this.add.group();
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.physics.arcade.gravity.y = GRAVITY;
         this.player = this.add.sprite(0,0,'player');
@@ -33,6 +35,7 @@ var state = {
         );
         this.scoreText.anchor.setTo(0.5, 0.5);
         this.input.onDown.add(this.jet, this);
+        this.spawnWall(300);
 
         this.reset();
     },
@@ -82,6 +85,23 @@ var state = {
         this.timeOver = this.time.now;
         this.scoreText.setText("FINAL SCORE\n"+ this.score+"\n\nTOUCH TO\nTRY AGAIN");
         this.background.autoScroll(0, 0);
+    },
+    spawnWall: function(y, flipped){
+        var wall = this.walls.create(
+            game.width,
+            y + (flipped ? -OPENING : OPENING) / 2,
+            'wall'
+        );
+        this.physics.arcade.enableBody(wall);
+        wall.body.allowGravity = false;
+        wall.scored = false;
+        wall.body.immovable = true;
+        wall.body.velocity.x = -SPEED;
+        if(flipped){
+            wall.scale.y = -1;
+            wall.body.offset.y = -wall.body.height;
+        };
+        return wall;
     }
 }
 
