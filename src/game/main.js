@@ -3,9 +3,9 @@ var GRAVITY = 900;
 
 var state = {
     preload: function(){
-        this.load.image("wall", "assets/wall.png");
-        this.load.image("background", "assets/background-texture.png");
-        this.load.spritesheet("player", "assets/player.png", 48, 48);
+        this.load.image("wall", "/tuto-test-game/assets/wall.png");
+        this.load.image("background", "/tuto-test-game/assets/background-texture.png");
+        this.load.spritesheet("player", "/tuto-test-game/assets/player.png", 48, 48);
     },
     create: function(){
         this.background = this.add.tileSprite(0, 0, this.world.with, this.world.height, 'background')
