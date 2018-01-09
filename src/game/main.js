@@ -87,6 +87,7 @@ var state = {
             game.width,
             y + (flipped ? -OPENING : OPENING) / 2,
             'wall'
+            //test
         );
         this.physics.arcade.enableBody(wall);
         wall.body.allowGravity = false;
