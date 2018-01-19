@@ -36,7 +36,7 @@ var state = {
         this.scoreText.anchor.setTo(0.5, 0.5);
         this.input.onDown.add(this.jet, this);
         this.spawnWall(300);
-
+        //TEST
         this.reset();
     },
     update: function(){
