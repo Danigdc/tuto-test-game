@@ -1,3 +1,5 @@
-## What is the Phaser Project Template?
+## Some unfinished game
 
-Custom template for phaser js, with grunt and vs
+Playground with phaser js, with grunt and vs
+
+Deployed game may be found here: https://danigdc.github.io/tuto-test-game/
